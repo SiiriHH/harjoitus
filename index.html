@@ -1,43 +1,65 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta charset="UTF-8">
-	<title>Kilometrikorvaus</title>
-	<!-- 
-Ohjelma kysyy ajetut kilometrit, laskee ja näyttää korvauksen määrän.
-Kilometrikorvaus on 0.45 euroa/kilometri. Vastaus muotoillaan kahdella desimaalilla.
+<meta charset="UTF-8">
+<title>Kimppakyyti</title>
+<style>
+label {
+	display: block;
+	width: 6em;
+	float: left;
+}
+</style>
+<!-- 
+Tee ohjelma, jolla mökille menijät voivat laskea kimppakyydin polttoainekustannukset. 
+Ohjelma kysyy ajetut kilometrit, auton kulutuksen per 100 km, bensan litrahinnan sekä 
+kimppakyytiläisten lukumäärän. Ohjelma laskee edellä kerrotuista tiedoista, 
+kuinka paljon jokainen maksaa bensasta. 
+Esimerkiksi jos ajetaan 500.0 kilometriä, kulutus on 7.0 litraa/100km, 
+polttoaine maksaa 1.690 euroa a/litra ja kimppakyytiläisiä on kolme, 
+jokainen maksaa 19.72 (500.0 * 7.0 / 100.0 * 1.690 /3). 
  -->
 </head>
-
 <body>
-	<h3>Kilometrikorvaus</h3>
+	<h3>Kimppakyyti</h3>
 
 	<form>
-		<label>Kilometrit:</label>
-		<!-- Lomakekenttä, jonka arvo luetaan JavaScriptissä rivillä 31 -->
-		<input type="text" id="matka" size="3">
-
-		<!-- Kun painiketta painetaan, suoritetaan laskeKorvaus funktio -->
-		<input type="button" value="Laske" onclick="laskeKorvaus()">
+		<p>
+			<label>Kilometrit:</label> 
+			<input type="text" id="kilometrit" size="5">
+		</p>
+		<p>
+			<label>Kulutus:</label> 
+			<input type="text" id="kulutus" size="5">
+		</p>
+		<p>
+			<label>Litrahinta:</label> 
+			<input type="text" id="litrahinta" size="5">
+		</p>
+		<p>
+			<label>Määrä:</label> 
+			<input type="text" id="maara" size="5">
+		</p>
+		<p>
+			<input type="button" value="Laske" onclick="laskeBensat()">
+		</p>
 	</form>
 
-	<!-- Vastaus kirjoitetaan alla olevaan elementtiin JavaScriptillä -->
-	<div id="vastaus"></div>
-
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<p id="vastaus"></p>
+	 
 	<script>
-		function laskeKorvaus() {
-			// Lomakekentän matka arvo riviltä 17 otetaan JavaScript muuttujaan kilometrit
-			// Lomakekentän arvo on merkkijono, Number muuntaa sen luvuksi
-			let kilometrit = Number(document.getElementById("matka").value);
+	function laskeBensat() {
+		let kilometrit = Number(document.getElementById("kilometrit").value);
+		let kulutus = Number(document.getElementById("kulutus").value);
+		let litrahinta = Number(document.getElementById("litrahinta").value);
+		let maara = Number(document.getElementById("maara").value);
+		let laskeBensat = ("kilometrit" * "kulutus" / "litrahinta" * "maara" /3);
 
-
-			// Kirjoitetaan vastaus html-sivun elementtiin, jonka id:n vastaus
-			// + liittää yhteen merkkijonoja ja muuttujia
-			// toFixed-metodi muotoilee luvun
-			document.getElementById("vastaus").innerHTML = "<p>Maksetaan " + korvaus.toFixed(2) + " euroa</p>";
-		}
-	</script>
+		document.getElementById("vastaus").innerHTML = "<p> Bensat on" +
+	laskeBensat.toFixed(2) + "</p>";
+		
+	}
+</script>
 </body>
-
 </html>
