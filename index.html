@@ -54,7 +54,7 @@ jokainen maksaa 19.72 (500.0 * 7.0 / 100.0 * 1.690 /3).
 		let kulutus = Number(document.getElementById("kulutus").value);
 		let litrahinta = Number(document.getElementById("litrahinta").value);
 		let maara = Number(document.getElementById("maara").value);
-		let laskeBensat = ("kilometrit" * "kulutus" / "litrahinta" * "maara" /3);
+		let laskeBensat = kilometrit * (kulutus / litrahinta / maara);
 
 		document.getElementById("vastaus").innerHTML = "<p> Bensat on" +
 	laskeBensat.toFixed(2) + "</p>";
